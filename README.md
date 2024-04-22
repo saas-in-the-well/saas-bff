@@ -3,6 +3,7 @@
 ## 환경 변수 설정
 
     로컬 환경으로 구동 (Active profiles : local)
+    java 버전 : openjdk-21
 
 ## 설정파일 적용 
     
