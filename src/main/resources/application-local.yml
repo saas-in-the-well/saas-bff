@@ -1,19 +1,13 @@
 server:
-  port: 8080
+  port: 6000
 
 saas:
   oil:
     endpoint:
-      url: http://10.60.130.32:8080
+      url: http://10.60.130.32:8000
   weather:
     endpoint:
       url: http://10.60.130.103:7000
-
-circuitBreaker:
-  failureRateThreshold: 50.0f
-  waitDurationInOpenState: 10000
-  slidingWindowSize: 5
-
 
 logging:
   level:
