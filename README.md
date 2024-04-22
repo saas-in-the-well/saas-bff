@@ -20,3 +20,10 @@
     2. Oil쪽 API는 하드코딩 되어있음
     3. JDBC 설정 필요
     
+## TEST
+
+    POST http://localhost:6000/api/geo/location
+    Content-Type: application/json
+    {
+    "address": "서울 강남구"
+    }
