@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+saas:
+  oil:
+    endpoint:
+      url: http://10.60.130.32:8080
+  weather:
+    endpoint:
+      url: http://10.60.130.103:7000
