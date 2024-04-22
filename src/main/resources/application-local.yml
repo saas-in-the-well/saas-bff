@@ -8,3 +8,13 @@ saas:
   weather:
     endpoint:
       url: http://10.60.130.103:7000
+
+circuitBreaker:
+  failureRateThreshold: 50.0f
+  waitDurationInOpenState: 10000
+  slidingWindowSize: 5
+
+
+logging:
+  level:
+    root: debug

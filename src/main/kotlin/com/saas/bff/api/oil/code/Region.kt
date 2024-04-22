@@ -1,4 +1,4 @@
-package com.saas.bff.oil.code
+package com.saas.bff.api.oil.code
 
 import lombok.ToString
 
