@@ -6,6 +6,7 @@ import com.saas.bff.api.oil.service.OilService
 import com.saas.bff.api.weather.service.WeatherService
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.reactive.awaitSingle
 import lombok.extern.slf4j.Slf4j
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -19,8 +20,8 @@ class GeolocationBffService () {
 
     suspend fun geolocationFromApis(requestModel: RequestModel): ResponseModel {
         var (oilResponse, weatherResponse) = coroutineScope {
-            val oil = async { oilService.areaAvgRecentPrice(requestModel) }
-            val weather = async { weatherService.weather(requestModel) }
+            val oil = async { oilService.areaAvgRecentPrice(requestModel).awaitSingle() }
+            val weather = async { weatherService.weather(requestModel).awaitSingle() }
             Pair(oil.await(), weather.await())
         }
 

@@ -1,7 +1,5 @@
 package com.saas.bff.api.oil.config
 
-import com.saas.bff.api.oil.service.OilService
-import io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerOperator
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -18,10 +16,6 @@ class OilApiConfig {
         return WebClient.create(sassOilEndPointUrl)
     }
 
-    @Bean
-    fun oilCircuitBreakerService(saasOilWebClient: WebClient, circuitBreakerOperator: CircuitBreakerOperator<String>): OilService {
-        return OilService(saasOilWebClient, circuitBreakerOperator)
-    }
 
 
 }

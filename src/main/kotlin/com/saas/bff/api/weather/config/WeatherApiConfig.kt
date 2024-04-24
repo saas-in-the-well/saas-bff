@@ -19,8 +19,4 @@ class WeatherApiConfig {
         return WebClient.create(sassWeatherEndPointUrl)
     }
 
-    @Bean
-    fun WeatherCircuitBreakerService(sassWeatherWebClient: WebClient, circuitBreakerOperator: CircuitBreakerOperator<String>): WeatherService {
-        return WeatherService(sassWeatherWebClient, circuitBreakerOperator)
-    }
 }

@@ -4,10 +4,12 @@ server:
 saas:
   oil:
     endpoint:
-      url: http://10.60.130.32:8000
+      #url: http://10.60.130.32:8000
+      url: http://localhost:8000
   weather:
     endpoint:
-      url: http://10.60.130.103:7000
+      #url: http://10.60.130.103:7000
+      url: http://localhost:8000
 
 logging:
   level:

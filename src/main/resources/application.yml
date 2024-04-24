@@ -1,3 +1,22 @@
 spring:
   application:
     name: saas-bff
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+
