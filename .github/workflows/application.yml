@@ -52,7 +52,7 @@ jobs:
       - name: Update remote Kubernetes Manifest
         run: |
           git remote set-url origin https://github.com/saas-in-the-well/saas-kubernetes.git
-          git config --global http.extraHeader "Authorization: Bearer ${{ secrets.JAEHO_PAT_TOKEN }}"
+          
           
           git fetch
           git checkout dev_jaeho
