@@ -10,7 +10,7 @@ env:
   APP_NAME: saas-bff
 
 jobs:
-  build-and-image Create:
+  build-and-image-create:
     runs-on: ubuntu-latest
 
     steps:
