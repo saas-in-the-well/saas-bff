@@ -54,3 +54,7 @@ tasks.withType(KotlinCompile) {
 tasks.named('test') {
     //useJUnitPlatform()
 }
+
+tasks.named('jar') {
+    archiveFileName.set('saas-bff-application-0.0.1-SNAPSHOT.jar')
+}
