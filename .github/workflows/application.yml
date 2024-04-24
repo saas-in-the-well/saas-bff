@@ -10,7 +10,7 @@ env:
   APP_NAME: saas-bff
 
 jobs:
-  build-and-push:
+  build-and-image Create:
     runs-on: ubuntu-latest
 
     steps:
@@ -49,12 +49,22 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:release-${{ steps.vars.outputs.branch }}-${{ github.sha }}
 
+  manifest-push:
+    runs-on: ubuntu-latest
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Git credentials
+        env:
+          PAT_TOKEN: ${{ secrets.JAEHO_PAT_TOKEN }}
+        run: |
+          git config --global credential.helper "store --file ~/.git-credentials"
+          echo "https://github.com:username:${PAT_TOKEN}" >> ~/.git-credentials
+
       - name: Update remote Kubernetes Manifest
         run: |
-          git remote set-url origin https://github.com/saas-in-the-well/saas-kubernetes.git
+          git remote set-url origin git@github.com:saas-in-the-well/saas-kubernetes.git
           
-          
-
           git fetch
           git checkout dev_jaeho
           git pull --rebase origin dev_jaeho
