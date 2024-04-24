@@ -58,11 +58,8 @@ jobs:
       - name: Update remote Kubernetes Manifest
         env:
           GITHUB_TOKEN: ${{ secrets.JAEHO_PAT_TOKEN }}
-          token: ${{ secrets.JAEHO_PAT_TOKEN }}
+          repository: 'saas-in-the-well/saas-kubernetes'
         run: |
-          git remote set-url origin https://github.com/saas-in-the-well/saas-kubernetes.git
-          
-          git fetch
           git checkout dev_jaeho
           git pull --rebase origin dev_jaeho
           
