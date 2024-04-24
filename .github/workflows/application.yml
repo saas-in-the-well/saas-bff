@@ -53,9 +53,11 @@ jobs:
   git-remote-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
       - name: Update remote Kubernetes Manifest
+        env:
+          GITHUB_TOKEN: ${{ secrets.JAEHO_PAT_TOKEN }}
         run: |
           git remote set-url origin https://github.com/saas-in-the-well/saas-kubernetes.git
           
@@ -69,4 +71,4 @@ jobs:
           git config user.name "GitHub Actions"
           git add kube/jaeho/${{ env.APP_NAME }}.yaml
           git commit -m "Update image tag in Kubernetes manifest"
-          git push
+          git push origin dev_jaeho
