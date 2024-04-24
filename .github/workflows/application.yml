@@ -56,11 +56,14 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Update remote Kubernetes Manifest
-        env:
+        with:
           GITHUB_TOKEN: ${{ secrets.JAEHO_PAT_TOKEN }}
           repository: 'saas-in-the-well/saas-kubernetes'
-          ref: 'dev_jaeho'
         run: |
+          
+          git fetch
+          git checkout dev_jaeho
+          git pull --rebase origin dev_jaeho
           
           sed -i 's|^.*image:.*|          image: ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:release-${{ steps.vars.outputs.branch }}-${{ github.sha }}|' kube/jaeho/${{ env.APP_NAME }}.yaml
           
