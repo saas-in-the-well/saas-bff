@@ -56,12 +56,12 @@ jobs:
           
           git fetch
           git checkout dev_jaeho
+          git pull --rebase origin dev_jaeho
           
-          git pull
           sed -i 's|^.*image:.*|          image: ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:release-${{ steps.vars.outputs.branch }}-${{ github.sha }}|' kube/jaeho/${{ env.APP_NAME }}.yaml
           
-          git config --global user.email ${{ secrets.JAEHO_GITHUB_EMAIL }}
-          git config --global user.name "GitHub Actions"
+          git config user.email ${{ secrets.JAEHO_GITHUB_EMAIL }}
+          git config user.name "GitHub Actions"
           git add kube/jaeho/${{ env.APP_NAME }}.yaml
           git commit -m "Update image tag in Kubernetes manifest"
           git push
