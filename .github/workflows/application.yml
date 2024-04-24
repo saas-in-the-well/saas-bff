@@ -56,7 +56,7 @@ jobs:
       - name: checkout saas-kubernetes
         uses: actions/checkout@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.JAEHO_PAT_TOKEN }}
+          token: ${{ secrets.JAEHO_PAT_TOKEN }}
           repository: 'saas-in-the-well/saas-kubernetes'
 
       - name: push Kubernetes Manifest
