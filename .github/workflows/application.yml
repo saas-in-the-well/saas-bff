@@ -55,10 +55,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update remote Kubernetes Manifest
+      - name: checkout saas-kubernetes
         with:
           GITHUB_TOKEN: ${{ secrets.JAEHO_PAT_TOKEN }}
           repository: 'saas-in-the-well/saas-kubernetes'
+
+      - name: Update remote Kubernetes Manifest
         run: |
           
           git fetch
