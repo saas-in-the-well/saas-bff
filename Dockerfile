@@ -7,8 +7,8 @@ FROM arm64v8/openjdk:21-jdk-slim@sha256:2ccc67a15cbb32bdc42ecd3dc94db10789049c5e
 WORKDIR /app
 
 # 호스트의 JAR 파일을 Docker 이미지로 복사합니다.
-COPY build/libs/bff-0.0.1-SNAPSHOT.jar /app/bff-0.0.1-SNAPSHOT.jar
+COPY build/libs/saas-bff-0.0.1-SNAPSHOT.jar /app/saas-bff-0.0.1-SNAPSHOT.jar
 
 # 어플리케이션을 실행합니다.
-CMD ["java", "-jar", "bff-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-jar", "saas-bff-0.0.1-SNAPSHOT.jar"]
 
