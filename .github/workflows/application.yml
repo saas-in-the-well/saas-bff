@@ -53,11 +53,12 @@ jobs:
   git-remote-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Update remote Kubernetes Manifest
         env:
           GITHUB_TOKEN: ${{ secrets.JAEHO_PAT_TOKEN }}
+          token: ${{ secrets.JAEHO_PAT_TOKEN }}
         run: |
           git remote set-url origin https://github.com/saas-in-the-well/saas-kubernetes.git
           
