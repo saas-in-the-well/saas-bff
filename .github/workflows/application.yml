@@ -52,6 +52,7 @@ jobs:
 
   git-remote-push:
     runs-on: ubuntu-latest
+    steps:
       - name: Update remote Kubernetes Manifest
         run: |
           git remote set-url origin https://github.com/saas-in-the-well/saas-kubernetes.git
