@@ -53,8 +53,7 @@ jobs:
         run: |
           git remote set-url origin https://github.com/saas-in-the-well/saas-kubernetes.git
           
-          git config --unset http.extraHeader
-          git config http.extraHeader "Authorization: Bearer ${{ secrets.JAEHO_PAT_TOKEN }}"
+          
 
           git fetch
           git checkout dev_jaeho
