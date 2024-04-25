@@ -10,5 +10,5 @@ WORKDIR /app
 COPY build/libs/saas-bff-0.0.1-SNAPSHOT.jar /app/saas-bff-0.0.1-SNAPSHOT.jar
 
 # 어플리케이션을 실행합니다.
-CMD ["java", "-jar", "-Dspring.profiles.active=dev", "saas-bff-0.0.1-SNAPSHOT.jar"]
+CMD ["java", "-Dspring.profiles.active=dev", "-jar", "saas-bff-0.0.1-SNAPSHOT.jar"]
 
