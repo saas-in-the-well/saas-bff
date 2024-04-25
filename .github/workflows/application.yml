@@ -68,7 +68,7 @@ jobs:
           git checkout dev_jaeho
           git pull --rebase origin dev_jaeho
           
-          sed -i 's|^.*image:.*|          image: ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:release-${{ steps.vars.outputs.branch }}-${{ github.sha }}|' kube/jaeho/${{ env.APP_NAME }}.yaml
+          sed -i 's|^.*image:.*|          image: ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:release-dev_jaeho-${{ github.sha }}|' kube/jaeho/${{ env.APP_NAME }}.yaml
           
           git config user.email ${{ secrets.JAEHO_GITHUB_EMAIL }}
           git config user.name "GitHub Actions"
