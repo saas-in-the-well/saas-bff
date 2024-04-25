@@ -1,14 +1,14 @@
-name: [develop] saas-bff application deploy
-
-on:
-  push:
-    branches: [ "develop" ]
-  pull_request:
-    branches: [ "develop" ]
+name: saas-bff application deploy
 
 env:
   APP_NAME: saas-bff
   BRANCH_NAME: develop
+
+on:
+  push:
+    branches: [ ${{ env.BRANCH_NAME }} ]
+  pull_request:
+    branches: [ ${{ env.BRANCH_NAME }} ]
 
 jobs:
   build:
