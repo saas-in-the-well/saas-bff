@@ -4,10 +4,10 @@ server:
 saas:
   oil:
     endpoint:
-      url: saas-oil:8000
+      url: saas-oil-service:8000
   weather:
     endpoint:
-      url: saas-weather:7000
+      url: saas-weather-service:7000
 
 logging:
   level:
