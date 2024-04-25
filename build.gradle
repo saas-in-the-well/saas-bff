@@ -7,7 +7,7 @@ plugins {
     id 'org.jetbrains.kotlin.plugin.spring' version '1.9.23'
 }
 
-group = 'com.saas'
+group = 'com.saas.bff'
 version = '0.0.1-SNAPSHOT'
 
 java {
@@ -52,9 +52,5 @@ tasks.withType(KotlinCompile) {
 }
 
 tasks.named('test') {
-    //useJUnitPlatform()
-}
-
-tasks.named('jar') {
-    archiveFileName.set('saas-bff-application-0.0.1-SNAPSHOT.jar')
+    useJUnitPlatform()
 }

@@ -1,0 +1,14 @@
+server:
+  port: 6000
+
+saas:
+  oil:
+    endpoint:
+      url: http://localhost:8000
+  weather:
+    endpoint:
+      url: http://localhost:7000
+
+logging:
+  level:
+    root: debug
