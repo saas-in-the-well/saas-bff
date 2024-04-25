@@ -2,9 +2,9 @@ name: Java CI with Gradle and Docker
 
 on:
   push:
-    branches: [ "dev_jaeho" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "dev_jaeho" ]
+    branches: [ "develop" ]
 
 env:
   APP_NAME: saas-bff
@@ -65,13 +65,13 @@ jobs:
         run: |
           
           git fetch
-          git checkout dev_jaeho
-          git pull --rebase origin dev_jaeho
+          git checkout develop
+          git pull --rebase origin develop
           
-          sed -i 's|^.*image:.*|          image: ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:release-dev_jaeho-${{ github.sha }}|' kube/jaeho/${{ env.APP_NAME }}.yaml
+          sed -i 's|^.*image:.*|          image: ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:release-develop-${{ github.sha }}|' kube/jaeho/${{ env.APP_NAME }}.yaml
           
           git config user.email ${{ secrets.JAEHO_GITHUB_EMAIL }}
           git config user.name "GitHub Actions"
           git add kube/jaeho/${{ env.APP_NAME }}.yaml
           git commit -m "Update image tag in Kubernetes manifest"
-          git push origin dev_jaeho
+          git push origin develop
