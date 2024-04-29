@@ -4,6 +4,9 @@ spring:
 
 management:
   endpoints:
+    prometheus:
+      enabled: true
+      endpoint: http://prometheus-service.saas.svc.cluster.local
     web:
       exposure:
         include: "*"
@@ -19,4 +22,3 @@ resilience4j:
     configs:
       default:
         registerHealthIndicator: true
-
