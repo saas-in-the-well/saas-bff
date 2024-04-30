@@ -9,7 +9,7 @@ on:
 env:
   APP_NAME: saas-bff
   AWS_REGION: ap-northeast-2
-  AWS_ROLE: arn:aws:iam::794187215716:role/devops_saas_github_oidc
+  AWS_ROLE: arn:aws:iam::794187215716:oidc-provider/token.actions.githubusercontent.com
 
 jobs:
 
