@@ -19,5 +19,5 @@ jobs:
       - name: Set AWS OIDC ROLE
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: ${{ env.AWS_REGION }}
-          aws-region: ${{ env.AWS_ROLE }}
+          role-to-assume: ${{ env.AWS_ROLE }}
+          aws-region: ${{ env.AWS_REGION }}
