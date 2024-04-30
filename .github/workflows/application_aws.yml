@@ -1,0 +1,23 @@
+name: Java CI with Gradle and Docker
+
+on:
+  push:
+    branches: [ "dev_jaeho" ]
+  pull_request:
+    branches: [ "dev_jaeho" ]
+
+env:
+  APP_NAME: saas-bff
+  AWS_REGION: ap-northeast-2
+  AWS_ROLE: arn:aws:iam::794187215716:role/devops_saas_github_oidc
+
+jobs:
+
+  aws-oidc-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set AWS OIDC ROLE
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ env.AWS_REGION }}
+          aws-region: ${{ env.AWS_ROLE }}
