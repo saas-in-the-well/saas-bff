@@ -12,7 +12,6 @@ permissions:
 env:
   APP_NAME: saas-bff
   BRANCH_NAME: dev_jaeho
-  AWS_ENV_TEST: ${{ secrets.AWS.AWS_OIDC_ROLE }}
 
 jobs:
 
@@ -40,9 +39,9 @@ jobs:
       - name: Set AWS OIDC ROLE
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: ${{ secrets.AWS.AWS_OIDC_ROLE }}
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}
           role-session-name: ecrRoleSession
-          aws-region: ap-northeast-2
+          aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
