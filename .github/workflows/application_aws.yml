@@ -39,7 +39,7 @@ jobs:
       - name: Set AWS OIDC ROLE
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: ${{ secrets.AWS_OIDC_ROLE }}
+          role-to-assume: arn:aws:iam::794187215716:role/devops_saas_github_oidc
           role-session-name: ecrRoleSession
           aws-region: ap-northeast-2
 
