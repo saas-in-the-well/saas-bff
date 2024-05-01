@@ -12,6 +12,7 @@ permissions:
 env:
   APP_NAME: saas-bff
   BRANCH_NAME: dev_jaeho
+  AWS_ENV_TEST: ${{ secrets.AWS.AWS_OIDC_ROLE }}
 
 jobs:
 
@@ -39,7 +40,7 @@ jobs:
       - name: Set AWS OIDC ROLE
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          role-to-assume: arn:aws:iam::794187215716:role/devops_saas_github_oidc
+          role-to-assume: ${{ secrets.AWS.AWS_OIDC_ROLE }}
           role-session-name: ecrRoleSession
           aws-region: ap-northeast-2
 
