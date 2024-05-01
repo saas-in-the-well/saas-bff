@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: [ "dev_jaeho" ]
 
+permissions:
+  id-token: write
 
 env:
   APP_NAME: saas-bff
