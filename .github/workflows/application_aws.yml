@@ -48,36 +48,36 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build Docker image
-        run: docker build . -t 794187215716.dkr.ecr.ap-northeast-2.amazonaws.com/${{ env.APP_NAME }}:release-${{ env.BRANCH_NAME }}-${{ github.sha }} --build-arg VERSION=${{ github.sha }}
+        run: docker build . -t 794187215716.dkr.ecr.ap-northeast-2.amazonaws.com/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }} --build-arg VERSION=${{ github.sha }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push 794187215716.dkr.ecr.ap-northeast-2.amazonaws.com/${{ env.APP_NAME }}:release-${{ env.BRANCH_NAME }}-${{ github.sha }}
+        run: docker push 794187215716.dkr.ecr.ap-northeast-2.amazonaws.com/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }}
 
-git-remote-push:
-  needs: build-and-image-create
-  runs-on: ubuntu-latest
+  git-remote-push:
+    needs: build-and-image-create
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: checkout saas-kubernetes
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.TOKEN_GITHUB }}
-        repository: ${{ vars.SAAS_KUBE_REPOSITORY }}
+    steps:
+      - name: checkout saas-kubernetes
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.TOKEN_GITHUB }}
+          repository: ${{ vars.SAAS_KUBE_REPOSITORY }}
 
-    - name: push Kubernetes Manifest
-      run: |
-
-        git fetch
-        git checkout ${{ env.BRANCH_NAME }}
-        git pull --rebase origin ${{ env.BRANCH_NAME }}
-
-        sed -i 's|^.*image:.*|          image: ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:release-${{ env.BRANCH_NAME }}-${{ github.sha }}|' kube/${{ env.BRANCH_NAME }}/${{ env.APP_NAME }}.yaml
-
-        git config user.email ${{ vars.SAAS_GITHUB_EMAIL }}
-        git config user.name ${{ vars.SAAS_GITHUB_NAME }}
-        git add kube/jaeho/${{ env.APP_NAME }}.yaml
-        git commit -m "Update image tag to ${{ github.sha }}"
-        git push origin ${{ env.BRANCH_NAME }}
+      - name: push Kubernetes Manifest
+        run: |
+  
+          git fetch
+          git checkout ${{ env.BRANCH_NAME }}
+          git pull --rebase origin ${{ env.BRANCH_NAME }}
+  
+          sed -i 's|^.*image:.*|          image: ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }}|' kube/${{ env.BRANCH_NAME }}/${{ env.APP_NAME }}.yaml
+  
+          git config user.email ${{ vars.SAAS_GITHUB_EMAIL }}
+          git config user.name ${{ vars.SAAS_GITHUB_NAME }}
+          git add kube/jaeho/${{ env.APP_NAME }}.yaml
+          git commit -m "Update image tag to ${{ github.sha }}"
+          git push origin ${{ env.BRANCH_NAME }}
 
 
 
