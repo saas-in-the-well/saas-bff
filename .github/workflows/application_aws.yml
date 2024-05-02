@@ -12,6 +12,7 @@ permissions:
 env:
   APP_NAME: saas-bff
   BRANCH_NAME: dev_jaeho
+  ECR_DOMAIN: 794187215716.dkr.ecr.ap-northeast-2.amazonaws.com
 
 jobs:
 
@@ -48,10 +49,10 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build Docker image
-        run: docker build . -t 794187215716.dkr.ecr.ap-northeast-2.amazonaws.com/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }} --build-arg VERSION=${{ github.sha }}
+        run: docker build . -t ${{ env.ECR_DOMAIN }}/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }} --build-arg VERSION=${{ github.sha }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push 794187215716.dkr.ecr.ap-northeast-2.amazonaws.com/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }}
+        run: docker push ${{ env.ECR_DOMAIN }}/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }}
 
   git-remote-push:
     needs: build-and-image-create
@@ -71,7 +72,7 @@ jobs:
           git checkout ${{ env.BRANCH_NAME }}
           git pull --rebase origin ${{ env.BRANCH_NAME }}
   
-          sed -i 's|^.*image:.*|          image: ${{ secrets.JAEHO_DOCKER_NAME }}/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }}|' kube/${{ env.BRANCH_NAME }}/${{ env.APP_NAME }}.yaml
+          sed -i 's|^.*image:.*|          image: ${{ env.ECR_DOMAIN }}/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }}|' kube/${{ env.BRANCH_NAME }}/${{ env.APP_NAME }}.yaml
   
           git config user.email ${{ vars.SAAS_GITHUB_EMAIL }}
           git config user.name ${{ vars.SAAS_GITHUB_NAME }}
