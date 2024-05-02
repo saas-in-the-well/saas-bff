@@ -15,7 +15,7 @@ env:
 
 jobs:
 
-  aws-oidc-check:
+  build-and-image-create:
     runs-on: ubuntu-latest
 
     steps:
