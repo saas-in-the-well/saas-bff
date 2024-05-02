@@ -61,7 +61,7 @@ jobs:
       - name: checkout saas-kubernetes
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.TOKEN_GITHUB }}
+          token: ${{ secrets.SAAS_GITHUB_TOKEN }}
           repository: ${{ vars.SAAS_KUBE_REPOSITORY }}
 
       - name: push Kubernetes Manifest
