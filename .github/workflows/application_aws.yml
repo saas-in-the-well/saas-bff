@@ -75,7 +75,7 @@ jobs:
   
           git config user.email ${{ vars.SAAS_GITHUB_EMAIL }}
           git config user.name ${{ vars.SAAS_GITHUB_NAME }}
-          git add kube/jaeho/${{ env.APP_NAME }}.yaml
+          git add kube/${{ env.BRANCH_NAME }}/${{ env.APP_NAME }}.yaml
           git commit -m "Update image tag to ${{ github.sha }}"
           git push origin ${{ env.BRANCH_NAME }}
 
