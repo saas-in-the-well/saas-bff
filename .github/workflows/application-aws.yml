@@ -71,8 +71,8 @@ jobs:
 
       - name: Build & Push Docker image
         run: |
-          docker build . -t ${{ env.ECR_URL }}/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }} --build-arg VERSION=${{ github.sha }}
-          docker push ${{ env.ECR_URL }}/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }}
+          docker build . -t ${{ env.ECR_URL }}:${{ env.BRANCH_NAME }}-${{ github.sha }} --build-arg VERSION=${{ github.sha }}
+          docker push ${{ env.ECR_URL }}:${{ env.BRANCH_NAME }}-${{ github.sha }}
 
   update-deployment:
     needs: push-docker-image
@@ -92,7 +92,7 @@ jobs:
 
       - name: push Kubernetes Manifest
         run: |
-          sed -i 's|^.*image:.*|          image: ${{ env.ECR_DOMAIN }}/${{ env.APP_NAME }}:${{ env.BRANCH_NAME }}-${{ github.sha }}|' kube/${{ env.BRANCH_NAME }}/${{ env.APP_NAME }}.yaml
+          sed -i 's|^.*image:.*|          image: ${{ env.ECR_URL }}:${{ env.BRANCH_NAME }}-${{ github.sha }}|' kube/${{ env.BRANCH_NAME }}/${{ env.APP_NAME }}.yaml
           git config user.email ${{ vars.SAAS_GITHUB_EMAIL }}
           git config user.name ${{ vars.SAAS_GITHUB_NAME }}
           git add kube/${{ env.BRANCH_NAME }}/${{ env.APP_NAME }}.yaml
