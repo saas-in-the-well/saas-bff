@@ -4,10 +4,12 @@ server:
 saas:
   oil:
     endpoint:
-      url: saas-oil-service
+      #url: saas-oil-service #EKS
+      url: http://saas-oil.aws:8000 #ECS
   weather:
     endpoint:
-      url: saas-weather-service
+      #url: saas-weather-service  #EKS
+      url: http://saas-weather.aws:8000 #ECS
 
 logging:
   level:
