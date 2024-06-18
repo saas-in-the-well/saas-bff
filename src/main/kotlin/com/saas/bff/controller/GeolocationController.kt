@@ -1,8 +1,7 @@
 package com.saas.bff.controller
 
-import com.example.bff.model.ResponseModel
-import com.saas.bff.model.RequestModel
 import com.saas.bff.Service.GeolocationBffService
+import com.saas.bff.model.RequestModel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
