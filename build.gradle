@@ -44,7 +44,7 @@ dependencies {
     // AWS CloudWatch appender
     implementation "ca.pjer:logback-awslogs-appender:1.6.0"
     implementation 'software.amazon.awssdk:aws-sdk-java:2.26.4'
-    implementation("software.amazon.awssdk:secretsmanager:2.17.236")
+    implementation("com.amazonaws:aws-java-sdk-ssm:1.12.170")
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
