@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 class ParameterStoreController(
     private val parameterStoreService: ParameterStoreService
 ) {
-    @PostMapping
+    @PostMapping("/")
     fun getParameterStoreValue(@RequestBody request: RequestParameterStoreModel): ResponseEntity<Any> {
 
         if(request.parameterName.isEmpty()){
