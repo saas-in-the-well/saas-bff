@@ -7,11 +7,11 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/ssm")
+@RequestMapping("/api")
 class ParameterStoreController(
     private val parameterStoreService: ParameterStoreService
 ) {
-    @PostMapping("/")
+    @PostMapping("/ssm")
     fun getParameterStoreValue(@RequestBody request: RequestParameterStoreModel): ResponseEntity<Any> {
 
         if(request.parameterName.isEmpty()){
